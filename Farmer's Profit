@@ -1,0 +1,25 @@
+//Farmer John's Dilemma 
+
+let p = [9, 1, 5], q = [10, 5], n = 3, m = 2, i = 0, j,
+  sum = [], half, count, ways = [];
+while (i < m) {
+  ways[i] = 0;
+  sum[i] = 0;
+  for (j = 0; j < n; j++) {
+    half = 1 / 2;
+    sum[i] = p[j];
+    for (k = 0; k < n; k++) {
+      if (k != j) {
+        sum[i] += parseInt(p[k] * half);
+        half /= 2;
+      }
+    }
+    if (sum[i] >= q[i]) {
+      ways[i] += 1;
+    }
+  }
+  i++;
+}
+for (i = 0; i < m; i++) {
+  console.log(ways[i]);
+}
