@@ -1,0 +1,39 @@
+//Nearest friend's house
+//input:{1,3,8}
+//output:[2,2,5]
+
+let a = [1, 2, 3, 4, 5, 6];
+let n = 6;
+let i = 0,j;
+let before, after;
+var sum = [];
+while (i < n) {
+  before = i - 1;
+  after = i + 1;
+  sum[i] = 0;
+  for (j = 0; j < n - 2; j++) {
+    if (before == -1) {
+      sum[i] += a[after] - a[i];
+      after++;
+    } else if (after == n) {
+      sum[i] += a[i] - a[before];
+      before--;
+    } else if (i == 0) {
+      before = after;
+      sum[i] += a[after] - a[i];
+      after++;
+    } else if (i == n - 1) {
+      after = before;
+      sum[i] += a[i] - a[before];
+      before--;
+    } else if (a[i] - a[before] <= a[after] - a[i]) {
+      sum[i] += a[i] - a[before];
+      before--;
+    } else if (a[i] - a[before] >= a[after] - a[i]) {
+      sum[i] += a[after] - a[i];
+      after++;
+    }
+  }
+  i++;
+}
+for (i = 0; i < n; i++) console.log(sum[i]);
